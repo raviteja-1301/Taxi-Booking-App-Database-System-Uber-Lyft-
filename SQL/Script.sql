@@ -1,23 +1,11 @@
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
 
 -- Create the Final_project database
-CREATE DATABASE Final_project_Team74;
+CREATE DATABASE SQL_Database;
 ----------------------------------------------------------------------------
 -- Use the Final_project database
-USE Final_project_Team74;
+USE SQL_Database;
 ---------------------------------------------------------------------------------
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
 -- Create Users Table
 CREATE TABLE Users (
     user_id INT NOT NULL PRIMARY KEY,
@@ -88,12 +76,6 @@ CREATE TABLE Feedback (
 );
 
 ------------------------------------------------------------------------------------------------------------------
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
 
 --Populating Users table
 INSERT INTO Users (user_id, name, email, phone, dob, address, registration_date)
@@ -243,7 +225,7 @@ VALUES
 (23, 23, 3, 5, 'Clean car and polite driver, excellent experience.'),
 (24, 24, 4, 4, 'Overall good, but the driver took a longer route.'),
 (25, 25, 5, 5, 'Wonderful experience, driver was excellent.'),
-(26, 26, 6, 2, 'The car had a minor issue, but it didn’t affect the trip.'),
+(26, 26, 6, 2, 'The car had a minor issue, but it didnï¿½t affect the trip.'),
 (27, 27, 7, 5, 'Perfect trip, driver was very professional.'),
 (28, 28, 8, 4, 'Ride was comfortable, but the fare was slightly high.'),
 (29, 29, 9, 3, 'The driver was late, but the ride was fine.'),
@@ -254,12 +236,6 @@ VALUES
 (34, 34, 4, 5, 'Amazing experience, driver was very courteous.'),
 (35, 35, 5, 2, 'Good trip, but the car was not very clean.');
 --------------------------------------------------------------------------------------------------------------------
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
 
 -- Show all tables data
 SELECT * FROM Users;
@@ -275,12 +251,7 @@ SELECT * FROM Payments;
 SELECT * FROM Feedback;
 
 ----------------------------------------------------------------------------------------------------------------------
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 
 ---Create three queries and convert them into views. Explain why you think would be
 ---useful to the user. All queries must be joined to one or more tables. Make sure you restrict the 
@@ -340,12 +311,7 @@ JOIN Drivers d ON t.driver_id = d.driver_id
 WHERE 
     f.rating <= 3;
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 ----------Displaying Views created
 SELECT *
 FROM Active_Users_Trip_Details
@@ -358,24 +324,13 @@ SELECT *
 FROM Negative_Feedback_Analysis
 ORDER BY trip_date DESC;
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
 --Droping Views
 DROP VIEW Active_Users_Trip_Details;
 DROP VIEW High_Rated_Drivers;
 DROP VIEW Negative_Feedback_Analysis;
 
 ----------------------------------------------------------------------------------------------------------------------
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 --Create an audit table for one of the lookup tables and demonstrate data saved to that audit table when data in 
 --the original table is inserted, modified, or deleted. Include an additional column in the audit table that will 
 --have a datetime field when the data was changed in the original table. Include the script to test all the operations.
@@ -391,13 +346,6 @@ CREATE TABLE Vehicle_Audit (
     operation_timestamp DATETIME NOT NULL
 );
 
-
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
 --Insert Trigger
 CREATE TRIGGER after_vehicle_insert
 ON Vehicles
@@ -434,12 +382,7 @@ BEGIN
 END;
 GO
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 --Test
 --Insert
 INSERT INTO Vehicles (vehicle_id, model, license_plate, capacity)
@@ -456,12 +399,7 @@ WHERE vehicle_id = 11;
 SELECT * FROM Vehicle_Audit;
 
 ------------------------------------------------------------------------------------------------------------------
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 
 --Demonstrate a use of the one stored procedures and User Defined Function (UDF) for
 --your database. Include create and drop scripts
@@ -483,31 +421,16 @@ BEGIN
     WHERE t.user_id = @user_id_param;
 END;
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 --Calling Stored Procedure
 EXEC GetTripsByUser @user_id_param = 1;
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 --Droping Stored Procedure
 DROP PROCEDURE GetTripsByUser;
 
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 --User Defined Function (UDF): Calculate Average Rating for a Driver
 
 CREATE FUNCTION GetDriverAverageRatingDetails(@driver_id_param INT)
@@ -527,31 +450,16 @@ RETURN
 );
 
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 -- calculating the average rating
 SELECT * FROM dbo.GetDriverAverageRatingDetails(1);
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 -- Droping Function
 DROP FUNCTION GetDriverAverageRatingDetails;
 
 -----------------------------------------------------------------------------------------------------------------
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 
 --Demonstrate the use of one cursor for your database. Create and drop script for cursor
 
@@ -591,21 +499,11 @@ BEGIN
     DEALLOCATE user_cursor;
 END;
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 -- Execute the procedure to process user details
 EXEC ProcessUserDetails;
 
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 -- Drop the procedure once it's no longer needed
 DROP PROCEDURE ProcessUserDetails;
 
@@ -614,12 +512,7 @@ DROP PROCEDURE ProcessUserDetails;
 
 
 ------------------------------------------------------------------------------------------------------------------
-/*
-Team - 74
-Raviteja Buchaiahgari and Sanjay Pulluri
-Final Project: Taxi Booking App (like Uber or Lyft).
-Date: 06/12/2024
-*/
+
 
 -- Drop Feedback Table
 DROP TABLE Feedback;

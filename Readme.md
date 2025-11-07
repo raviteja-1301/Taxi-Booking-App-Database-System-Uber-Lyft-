@@ -27,8 +27,8 @@ Includes schema, seed data, views, triggers with audit logging, a stored procedu
    ```
    (Or copy-paste its contents into a new query window and execute.)
 3. The script will:
-   - `CREATE DATABASE ;`
-   - `USE DATABASE;`
+   - `CREATE DATABASE SQL_Database;`
+   - `USE SQL_Database;`
    - Create tables, load sample data, create views/triggers/SP/UDF/cursor.
 
 > **Note:** The script uses T-SQL functions like `GETDATE()` and `DATEADD`, and composite keys. It targets **Microsoft SQL Server**. For MySQL/Postgres you’d need minor syntax changes.
